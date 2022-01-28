@@ -1,6 +1,6 @@
 /obj/item/projectile/bullet/c45 // Yes I know I am changing how .45 weapons work by making the basic ammo less-than-lethal. This just makes this easier in the long run with mags
 	name = ".45 rubber bullet"
-	damage = 20
+	damage = 10
 	stamina = 52
 	sharpness = NONE
 
@@ -54,31 +54,13 @@
 		M.adjust_fire_stacks(6)
 		M.IgniteMob()
 
-/obj/item/projectile/bullet/c45/taser
-	name = ".45 Stun"
-	damage = 5
-	stamina = 30
-	stutter = 5
-	jitter = 20
-	range = 7
-	icon_state = "spark"
-	color = "#FFFF00"
-	var/tase_duration = 50
-
-/obj/item/projectile/bullet/c45/taser/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(!ismob(target) || blocked >= 100) //Fully blocked by mob or collided with dense object - burst into sparks!
-		do_sparks(1, TRUE, src)
-	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "tased", /datum/mood_event/tased)
-		SEND_SIGNAL(C, COMSIG_LIVING_MINOR_SHOCK)
-		C.IgniteMob()
-		if(C.dna && C.dna.check_mutation(HULK))
-			C.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
-		else if(tase_duration && (C.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(C, TRAIT_STUNIMMUNE) && !HAS_TRAIT(C, TRAIT_TASED_RESISTANCE))
-			C.electrocute_act(15, src, 1, SHOCK_NOSTUN)
-			C.apply_status_effect(STATUS_EFFECT_TASED_WEAK, tase_duration)
-
 /obj/item/projectile/bullet/c45_cleaning
 	sharpness = SHARP_EDGED
+
+/obj/item/projectile/energy/electrode/c45
+	tase_duration = 40
+	knockdown = 15
+	stamina = 15
+	knockdown_stamoverride = 10
+	knockdown_stam_max = 60
+	strong_tase = FALSE
