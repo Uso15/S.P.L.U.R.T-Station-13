@@ -216,7 +216,13 @@ GLOBAL_LIST_INIT(jumpsuitlist, list(PREF_SUIT, PREF_SKIRT))
 #define UPLINK_PDA		"PDA"
 #define UPLINK_RADIO	"Radio"
 #define UPLINK_PEN		"Pen" //like a real spy!
-GLOBAL_LIST_INIT(uplink_spawn_loc_list, list(UPLINK_PDA, UPLINK_RADIO, UPLINK_PEN))
+#define UPLINK_IMPLANT "Implant"
+#define UPLINK_IMPLANT_WITH_PRICE "[UPLINK_IMPLANT] (-[UPLINK_IMPLANT_TELECRYSTAL_COST] TC)"
+// What we show to the user
+GLOBAL_LIST_INIT(uplink_spawn_loc_list, list(UPLINK_PDA, UPLINK_RADIO, UPLINK_PEN, UPLINK_IMPLANT_WITH_PRICE))
+// What is actually saved; if the uplink implant price changes, it won't affect save files then
+GLOBAL_LIST_INIT(uplink_spawn_loc_list_save, list(UPLINK_PDA, UPLINK_RADIO, UPLINK_PEN, UPLINK_IMPLANT))
+
 
 //List of cached alpha masked icons.
 GLOBAL_LIST_EMPTY(alpha_masked_worn_icons)
@@ -366,7 +372,7 @@ GLOBAL_LIST_INIT(job_heirlooms, list(
 GLOBAL_LIST_INIT(nongendered_limb_types, list("fly", "zombie" ,"synth", "shadow", "cultgolem", "agent", "plasmaman", "clockgolem", "clothgolem"))
 
 //list of eye types, corresponding to a respective left and right icon state for the set of eyes
-GLOBAL_LIST_INIT(eye_types, list("normal", "insect", "moth", "double", "double2", "double3", "cyclops"))
+GLOBAL_LIST_INIT(eye_types, list("normal", "insect", "moth", "double", "double2", "double3", "spider", "cyclops", "third"))
 
 //list linking bodypart bitflags to their actual names
 GLOBAL_LIST_INIT(bodypart_names, list(num2text(HEAD) = "Head", num2text(CHEST) = "Chest", num2text(LEG_LEFT) = "Left Leg", num2text(LEG_RIGHT) = "Right Leg", num2text(ARM_LEFT) = "Left Arm", num2text(ARM_RIGHT) = "Right Arm"))

@@ -111,6 +111,7 @@ GLOBAL_LIST(topic_status_cache)
 		GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
 
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
+	GLOB.world_suspicious_login_log = "[GLOB.log_directory]/suspicious_logins.log"
 	GLOB.world_virus_log = "[GLOB.log_directory]/virus.log"
 	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
@@ -306,7 +307,7 @@ GLOBAL_LIST(topic_status_cache)
 	s += "<b>[station_name()]</b>";
 	s += " ("
 	s += "<a href=\"[CONFIG_GET(string/discordurl)]\">" //Go to the config file, no longer changed here!
-	s += "[(CONFIG_GET(string/server_display_name) ? CONFIG_GET(string/server_display_name) : "Sandstorm")]"  //Default to us if unchanged ¯\_(ツ)_/¯
+	s += "[(CONFIG_GET(string/server_display_name) ? CONFIG_GET(string/server_display_name) : "SPLURT")]"  //Default to us if unchanged ¯\_(ツ)_/¯
 	s += "</a>"
 	s += ")\]" //CIT CHANGE - encloses the server title in brackets to make the hub entry fancier
 	s += "<br>[CONFIG_GET(string/servertagline)]<br>" //CIT CHANGE - adds a tagline!

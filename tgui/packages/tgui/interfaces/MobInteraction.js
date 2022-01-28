@@ -130,6 +130,7 @@ const CharacterPrefsTab = (props, context) => {
     erp_pref,
     noncon_pref,
     vore_pref,
+    unholy_pref,
     extreme_pref,
     extreme_harm,
   } = data;
@@ -205,6 +206,29 @@ const CharacterPrefsTab = (props, context) => {
               value: 0,
             })} />
         </LabeledList.Item>
+        <LabeledList.Item label="Unholy Preference">
+          <Button
+            icon={"check"}
+            color={unholy_pref === 1 ? "green" : "default"}
+            onClick={() => act('char_pref', {
+              char_pref: 'unholy_pref',
+              value: 1,
+            })} />
+          <Button
+            icon={"question"}
+            color={unholy_pref === 2 ? "yellow" : "default"}
+            onClick={() => act('char_pref', {
+              char_pref: 'unholy_pref',
+              value: 2,
+            })} />
+          <Button
+            icon={"times"}
+            color={unholy_pref === 0 ? "red" : "default"}
+            onClick={() => act('char_pref', {
+              char_pref: 'unholy_pref',
+              value: 0,
+            })} />
+        </LabeledList.Item>
         <LabeledList.Item label="Extreme Preference">
           <Button
             icon={"check"}
@@ -269,6 +293,8 @@ const ContentPreferencesTab = (props, context) => {
     bimbofication,
     breast_enlargement,
     penis_enlargement,
+    butt_enlargement,
+    belly_inflation,
     never_hypno,
     no_aphro,
     no_ass_slap,
@@ -394,6 +420,22 @@ const ContentPreferencesTab = (props, context) => {
         selected={penis_enlargement}
         onClick={() => act('pref', {
           pref: 'penis_enlargement',
+        })}
+      />
+      <Button
+        content="Butt enlargement"
+        icon={butt_enlargement ? "toggle-on" : "toggle-off"}
+        selected={butt_enlargement}
+        onClick={() => act('pref', {
+          pref: 'butt_enlargement',
+        })}
+      />
+      <Button
+        content="Belly inflation"
+        icon={belly_inflation ? "toggle-on" : "toggle-off"}
+        selected={belly_inflation}
+        onClick={() => act('pref', {
+          pref: 'belly_inflation',
         })}
       />
       <Button

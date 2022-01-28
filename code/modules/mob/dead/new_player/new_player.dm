@@ -149,7 +149,7 @@
 			message_admins("Blocked [src] from new player panel because age gate could not access player database flags.")
 			return FALSE
 
-		if(!(client.prefs.db_flags & DB_FLAG_AGE_CONFIRMATION_INCOMPLETE)) //completed? Skip
+		if(client.prefs.db_flags & DB_FLAG_AGE_CONFIRMATION_COMPLETE) //completed? Skip
 			return TRUE
 
 		var/age_verification = age_gate()
@@ -790,6 +790,11 @@
 	. = new_character
 	if(.)
 		new_character.key = key		//Manually transfer the key to log them in
+		//splurt change
+		if(jobban_isbanned(new_character, "pacifist"))
+			to_chat(new_character, "<span class='cult'>You are pacification banned. Pacifist has been force applied.</span>")
+			ADD_TRAIT(new_character, TRAIT_PACIFISM, "pacification ban")
+		//
 		new_character.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 		new_character = null
 		qdel(src)

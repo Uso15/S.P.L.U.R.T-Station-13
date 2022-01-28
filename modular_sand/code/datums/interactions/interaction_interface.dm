@@ -146,6 +146,7 @@
 		data["vore_pref"] = 		pref_to_num(prefs.vorepref)
 		data["extreme_pref"] = 		pref_to_num(prefs.extremepref)
 		data["extreme_harm"] = 		pref_to_num(prefs.extremeharm)
+		data["unholy_pref"] =		pref_to_num(prefs.unholypref)
 
 	//Getting preferences
 		data["verb_consent"] = 		CHECK_BITFIELD(prefs.toggles, VERB_CONSENT)
@@ -163,6 +164,8 @@
 		data["bimbofication"] = 	CHECK_BITFIELD(prefs.cit_toggles, BIMBOFICATION)
 		data["breast_enlargement"] = CHECK_BITFIELD(prefs.cit_toggles, BREAST_ENLARGEMENT)
 		data["penis_enlargement"] = CHECK_BITFIELD(prefs.cit_toggles, PENIS_ENLARGEMENT)
+		data["butt_enlargement"] = 	CHECK_BITFIELD(prefs.cit_toggles, BUTT_ENLARGEMENT)
+		data["belly_inflation"] = CHECK_BITFIELD(prefs.cit_toggles, BELLY_INFLATION)
 		data["never_hypno"] = 		!CHECK_BITFIELD(prefs.cit_toggles, NEVER_HYPNO)
 		data["no_aphro"] = 			!CHECK_BITFIELD(prefs.cit_toggles, NO_APHRO)
 		data["no_ass_slap"] = 		!CHECK_BITFIELD(prefs.cit_toggles, NO_ASS_SLAP)
@@ -219,6 +222,11 @@
 						return FALSE
 					else
 						prefs.vorepref = value
+				if("unholy_pref")
+					if(prefs.unholypref == value)
+						return FALSE
+					else
+						prefs.unholypref = value
 				if("extreme_pref")
 					if(prefs.extremepref == value)
 						return FALSE
@@ -268,6 +276,10 @@
 					TOGGLE_BITFIELD(prefs.cit_toggles, BREAST_ENLARGEMENT)
 				if("penis_enlargement")
 					TOGGLE_BITFIELD(prefs.cit_toggles, PENIS_ENLARGEMENT)
+				if("butt_enlargement")
+					TOGGLE_BITFIELD(prefs.cit_toggles, BUTT_ENLARGEMENT)
+				if("belly_inflation")
+					TOGGLE_BITFIELD(prefs.cit_toggles, BELLY_INFLATION)
 				if("never_hypno")
 					TOGGLE_BITFIELD(prefs.cit_toggles, NEVER_HYPNO)
 				if("no_aphro")

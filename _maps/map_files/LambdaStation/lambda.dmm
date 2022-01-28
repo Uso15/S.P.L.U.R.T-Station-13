@@ -63491,6 +63491,7 @@
 /obj/machinery/newscaster{
 	pixel_y = 33
 	},
+/obj/item/hilbertshotel/ghostdojo,
 /turf/open/floor/carpet,
 /area/hallway/secondary/entry)
 "dQE" = (
@@ -73655,6 +73656,10 @@
 /obj/machinery/atmospherics/miner/carbon_dioxide,
 /turf/open/floor/engine/co2,
 /area/engineering/atmos)
+"xWz" = (
+/obj/structure/dresser,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "xYx" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -115309,7 +115314,7 @@ abA
 abV
 acn
 acn
-abT
+xWz
 afh
 ady
 ady
