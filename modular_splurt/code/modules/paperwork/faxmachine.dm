@@ -119,9 +119,9 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 	return FALSE
 
 /obj/machinery/photocopier/faxmachine/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui,)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui, "FaxMachine",  name, 540, 300,)
+		ui = new(user, src, "FaxMachine", name, 540, 300)
 		ui.open()
 
 /obj/machinery/photocopier/faxmachine/ui_data(mob/user)
@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 				to_chat(usr, "<span class='notice'>You eject [faxitem] from [src].</span>")
 				faxitem = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo)) /*|| istype(I, /obj/item/paper_bundle))*/
 //					user.dropItemToGround()
 					faxitem = I
@@ -248,7 +248,7 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 	if(scan) // Card is in machine
 		if(ishuman(usr))
 			scan.forceMove(get_turf(src))
-			if(!usr.get_active_hand() && Adjacent(usr))
+			if(Adjacent(usr))
 				usr.put_in_hands(scan)
 			scan = null
 		else
@@ -278,7 +278,7 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 	if(scan)
 		to_chat(usr, "You remove [scan] from [src].")
 		scan.forceMove(get_turf(src))
-		if(!usr.get_active_hand() && Adjacent(usr))
+		if(Adjacent(usr))
 			usr.put_in_hands(scan)
 		scan = null
 	else

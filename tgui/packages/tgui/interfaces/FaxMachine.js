@@ -4,6 +4,16 @@ import { Window } from "../layouts";
 
 export const FaxMachine = (props, context) => {
   const { act, data } = useBackend(context);
+  const {
+    scan_name,
+    authenticated,
+    nologin,
+    realauth,
+    network,
+    paper,
+    destination,
+    sendError,
+  } = data;
   return (
     <Window>
       <Window.Content>
@@ -11,18 +21,18 @@ export const FaxMachine = (props, context) => {
           <LabeledList>
             <LabeledList.Item label="ID Card">
               <Button
-                icon={data.scan_name ? 'eject' : 'id-card'}
-                selected={data.scan_name}
-                content={data.scan_name ? data.scan_name : '-----'}
-                tooltip={data.scan_name ? "Eject ID" : "Insert ID"}
+                icon={scan_name ? 'eject' : 'id-card'}
+                selected={scan_name}
+                content={scan_name ? scan_name : '-----'}
+                tooltip={scan_name ? "Eject ID" : "Insert ID"}
                 onClick={() => act("scan")} />
             </LabeledList.Item>
             <LabeledList.Item label="Authorize">
               <Button
-                icon={data.authenticated ? 'sign-out-alt' : 'id-card'}
-                selected={data.authenticated}
-                disabled={data.nologin}
-                content={data.realauth ? 'Log Out' : 'Log In'}
+                icon={authenticated ? 'sign-out-alt' : 'id-card'}
+                selected={authenticated}
+                disabled={nologin}
+                content={realauth ? 'Log Out' : 'Log In'}
                 onClick={() => act("auth")} />
             </LabeledList.Item>
           </LabeledList>
@@ -30,15 +40,15 @@ export const FaxMachine = (props, context) => {
         <Section title="Fax Menu">
           <LabeledList>
             <LabeledList.Item label="Network">
-              {data.network}
+              {network}
             </LabeledList.Item>
             <LabeledList.Item label="Document">
               <Button
-                icon={data.paper ? 'eject' : 'paperclip'}
-                disabled={!data.authenticated && !data.paper}
-                content={data.paper ? data.paper : '-----'}
+                icon={paper ? 'eject' : 'paperclip'}
+                disabled={!authenticated && !paper}
+                content={paper ? paper : '-----'}
                 onClick={() => act("paper")} />
-              {!!data.paper && (
+              {!!paper && (
                 <Button
                   icon="pencil-alt"
                   content="Rename"
@@ -48,16 +58,16 @@ export const FaxMachine = (props, context) => {
             <LabeledList.Item label="Sending To">
               <Button
                 icon="print"
-                content={data.destination ? data.destination : "-----"}
-                disabled={!data.authenticated}
+                content={destination ? destination : "-----"}
+                disabled={!authenticated}
                 onClick={() => act("dept")} />
             </LabeledList.Item>
             <LabeledList.Item label="Action">
               <Button
                 icon="envelope"
-                content={data.sendError ? data.sendError : "Send"}
-                disabled={!data.paper || !data.destination
-                  || !data.authenticated || data.sendError}
+                content={sendError ? sendError : "Send"}
+                disabled={!paper || !destination
+                  || !authenticated || sendError}
                 onClick={() => act("send")} />
             </LabeledList.Item>
           </LabeledList>
