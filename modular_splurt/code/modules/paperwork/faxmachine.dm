@@ -118,10 +118,10 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 		return TRUE
 	return FALSE
 
-/obj/machinery/photocopier/faxmachine/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = TRUE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/photocopier/faxmachine/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui,)
 	if(!ui)
-		ui = new(user, src, ui_key, "FaxMachine",  name, 540, 300, master_ui, state)
+		ui = new(user, src, ui, "FaxMachine",  name, 540, 300,)
 		ui.open()
 
 /obj/machinery/photocopier/faxmachine/ui_data(mob/user)
@@ -156,7 +156,8 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 
 
 /obj/machinery/photocopier/faxmachine/ui_act(action, params)
-	if(isnull(..())) // isnull(..()) here because the parent photocopier proc returns null as opposed to TRUE if the ui should not be interacted with.
+	. = ..()
+	if(.)
 		return
 	var/is_authenticated = is_authenticated(usr)
 	. = TRUE
@@ -181,7 +182,7 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 			if(faxitem)
 				faxitem.forceMove(src)
 				if(ishuman(usr))
-					if(!usr.get_active_hand() && Adjacent(usr))
+					if(Adjacent(usr))
 						usr.put_in_hands(faxitem)
 				to_chat(usr, "<span class='notice'>You eject [faxitem] from [src].</span>")
 				faxitem = null
@@ -255,7 +256,7 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 			scan = null
 	else if(Adjacent(usr))
 		if(!card)
-			var/obj/item/I = usr.get_active_hand()
+			var/obj/item/I = usr.get_active_held_item()
 			if(istype(I, /obj/item/card/id))
 //				usr.drop_item()
 				I.forceMove(src)

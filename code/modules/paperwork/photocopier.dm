@@ -31,7 +31,7 @@
 	var/obj/item/paper/paper_copy
 	/// A reference to an `/obj/item/photo` inside the copier, if one is inserted. Otherwise null.
 	var/obj/item/photo/photo_copy
-	/// A reference to an `/obj/item/documents` inside the copier, if one is inserted. Otherwise null.
+	/// A reference to an '/obj/item/paper_bundle' inside the copier, if one is inserted. Otherwise null.
 	var/obj/item/documents/document_copy
 	/// A reference to a mob on top of the photocopier trying to copy their ass. Null if there is no mob.
 	var/mob/living/ass
@@ -82,6 +82,8 @@
 	return data
 
 /obj/machinery/photocopier/ui_act(action, list/params)
+	if(istype(src, /obj/machinery/photocopier/faxmachine))
+		return ..()
 	. = ..()
 	if(.)
 		return
